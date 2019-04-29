@@ -4,7 +4,7 @@ void ADC_Init(ANALOG_IN AIN)	// SELECT ONE OF THESE INPUT PINS TO ADC	(MAY NOT B
 {
 	SYSCTL-> RCGCADC|=0X01;
 	// ------------------ SETTING INPUT SIGNAL TO ADC 	--------------------------
-	if		 (AIN ==PB4){SYSCTL->RCGCGPIO|=0X02;GPIOB->AFSEL|=0X10;GPIOB->DEN&=~0X10;GPIOB->AMSEL|=0X10;}
+	if     (AIN ==PB4){SYSCTL->RCGCGPIO|=0X02;GPIOB->AFSEL|=0X10;GPIOB->DEN&=~0X10;GPIOB->AMSEL|=0X10;}
 	else if(AIN ==PB5){SYSCTL->RCGCGPIO|=0X02;GPIOB->AFSEL|=0X20;GPIOB->DEN&=~0X20;GPIOB->AMSEL|=0X20;}
 	else if(AIN ==PE0){SYSCTL->RCGCGPIO|=0X10;GPIOE->AFSEL|=0X01;GPIOE->DEN&=~0X01;GPIOE->AMSEL|=0X01;}
 	else if(AIN ==PE1){SYSCTL->RCGCGPIO|=0X10;GPIOE->AFSEL|=0X02;GPIOE->DEN&=~0X02;GPIOE->AMSEL|=0X02;}
@@ -17,18 +17,18 @@ void ADC_Init(ANALOG_IN AIN)	// SELECT ONE OF THESE INPUT PINS TO ADC	(MAY NOT B
 	else if(AIN ==PD2){SYSCTL->RCGCGPIO|=0X08;GPIOD->AFSEL|=0X04;GPIOD->DEN&=~0X04;GPIOD->AMSEL|=0X04;}
 	else if(AIN ==PD3){SYSCTL->RCGCGPIO|=0X08;GPIOD->AFSEL|=0X08;GPIOD->DEN&=~0X08;GPIOD->AMSEL|=0X08;}
 	// ------------------END SETTING INPUT SIGNAL TO ADC --------------------------
-	ADC0->ACTSS			&=~0X08;
-	ADC0->EMUX			&=~0XF000;					/* software trigger conversion */
-	ADC0->SSMUX3		 =0X00;						// FOR TEMPRATURE SENSOR SEE DATASHEET P.853 <======
-	ADC0->SSCTL3		|=0X06;						// take one sample at a time, set flag at 1st sample
+	ADC0->ACTSS		&=~0X08;
+	ADC0->EMUX		&=~0XF000;			/* software trigger conversion */
+	ADC0->SSMUX3		 =0X00;				// FOR TEMPRATURE SENSOR SEE DATASHEET P.853 <======
+	ADC0->SSCTL3		|=0X06;				// take one sample at a time, set flag at 1st sample
 	ADC0->ACTSS 		|= 0X08;
 }
-void ADC_Init_TEMP(void)			// NO NEED FOR AN INPUT SIGNAL AS READING IS FROM THE EMBEDDED TEMP SENSOR	(THIS CAN BE USED IN PROJECT)
+void ADC_Init_TEMP(void)   // NO NEED FOR AN INPUT SIGNAL AS READING IS FROM THE EMBEDDED TEMP SENSOR	(THIS CAN BE USED IN PROJECT)
 {
-	SYSCTL-> RCGCADC|=0X01;
-	ADC0->ACTSS			&=~0X08;
-	ADC0->EMUX			&=~0XF000;					/* software trigger conversion */
-	ADC0->SSMUX3		 =0X00;						// FOR TEMPRATURE SENSOR SEE DATASHEET P.853 <======
-	ADC0->SSCTL3		|=0X0E;						// take one sample at a time, set flag at 1st sample,also takes temprature reading
+	SYSCTL-> RCGCADC	|=0X01;
+	ADC0->ACTSS		&=~0X08;
+	ADC0->EMUX		&=~0XF000;			/* software trigger conversion */
+	ADC0->SSMUX3		 =0X00;				// FOR TEMPRATURE SENSOR SEE DATASHEET P.853 <======
+	ADC0->SSCTL3		|=0X0E;				// take one sample at a time, set flag at 1st sample,also takes temprature reading
 	ADC0->ACTSS 		|= 0X08;
 }
