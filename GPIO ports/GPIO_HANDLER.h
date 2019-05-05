@@ -1,4 +1,5 @@
 #include"TM4C123GH6PM.h"
+#include "motor.h"
 // include transmit
 void GPIOF_HANDLER(void)		// INTERNAL SWITCHES ARE AT ---PF1--- AND ---PF4---
 {
@@ -9,7 +10,9 @@ void GPIOF_HANDLER(void)		// INTERNAL SWITCHES ARE AT ---PF1--- AND ---PF4---
 		{
 			/* CODE TO WRITE ON UART_DR REGISTER ex: UART0->DR = '$' WHERE THIS SIGN '$' MEANS +30 DEG AT MOTOR SIDE  */
 			
-			UART_SEND(0 , 36) // $ ascii in decimal
+			// make sure that the port is identified in motor.c 
+			if ( UART_RECIEVE (0) == 36 ) //ascii code for $ = 35 
+					Rotate(negative,30);
 			
 			GPIOF->ICR |= 0x10;			 /* clear the interrupt flag */
 			readback = GPIOF->ICR; 	/* a read to force clearing of interrupt*/
@@ -18,7 +21,9 @@ void GPIOF_HANDLER(void)		// INTERNAL SWITCHES ARE AT ---PF1--- AND ---PF4---
 		{
 			/* CODE TO WRITE ON UART_DR REGISTER ex: UART0->DR = '#' WHERE THIS SIGN '#' MEANS -30 DEG AT MOTOR SIDE  */
 			
-			UART_SEND(0 , 35)  // # ascii in decimal
+			/ make sure that the port is identified in motor.c 
+			if ( UART_RECIEVE (0) == 35 ) //ascii code for # = 35 in decimal
+				Rotate(positive,30);
 			
 			GPIOF->ICR |= 0x10;			 /* clear the interrupt flag */
 			readback = GPIOF->ICR; 	/* a read to force clearing of interrupt*/
