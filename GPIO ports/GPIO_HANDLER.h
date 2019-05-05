@@ -20,7 +20,7 @@ void GPIOF_HANDLER(void)		// INTERNAL SWITCHES ARE AT ---PF1--- AND ---PF4---
 		{
 			/* CODE TO WRITE ON UART_DR REGISTER ex: UART0->DR = '#' WHERE THIS SIGN '#' MEANS -30 DEG AT MOTOR SIDE  */
 			
-			UART_SEND ( 0 , 35 ) ; // 36 is the ascii code for $
+			UART_SEND ( 0 , 35 ) ; // 35 is the ascii code for #
 			
 			GPIOF->ICR |= 0x10;			 /* clear the interrupt flag */
 			readback = GPIOF->ICR; 	/* a read to force clearing of interrupt*/
