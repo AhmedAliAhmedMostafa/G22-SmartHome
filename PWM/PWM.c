@@ -10,7 +10,7 @@ void PWM5_3_G2 (void)  // for pf1
 	PWM1_2_LOAD_R = 2500 - 1; // 500 Hz
 	PWM1_2_CMPA_R = 2498 ; // 0% Duty Cycle 
 	PWM1_2_CTL_R = PWM_0_CTL_ENABLE;
-	PWM1_ENABLE_R  = PWM_ENABLE_PWM5EN; // M1PWM6 (PF1) 
+	PWM1_ENABLE_R  = PWM_ENABLE_PWM5EN; // M1PWM5 (PF1) 
 }
 
 void PWM6_3_G3 (void)  // for pf2
@@ -30,14 +30,18 @@ void PWM7_3_G3 (void)  // for pf3
 	PWM1_3_LOAD_R = 2500 - 1; // 500 Hz
 	PWM1_3_CMPA_R = 2498 ; // 0% Duty Cycle 
 	PWM1_3_CTL_R = PWM_0_CTL_ENABLE;
-	PWM1_ENABLE_R  = PWM_ENABLE_PWM7EN; // M1PWM6 (PF3) 
+	PWM1_ENABLE_R  = PWM_ENABLE_PWM7EN; // M1PWM7 (PF3) 
 }
 
 
 
 void PWM1_init (uint8_t  pin_index)
 {
-	SYSCTL_RCGC0_R |= 0x01000000;   // Enable the PWM clock by writinga value of 0x0010.0000 to the RCGC0 register
+	/*from the data sheet */
+	//SYSCTL_RCGC0_R |= 0x00100000;   // Enable the PWM clock by writinga value of 0x0010.0000 to the RCGC0 register 
+	
+	SYSCTL_RCGCPWM_R |= SYSCTL_RCGCPWM_R1; // PWM Module 1 Run Mode Clock
+                                               // Gating Control
 	
 	SYSCTL_RCC_R |= SYSCTL_RCC_USEPWMDIV;  // Enable PWM Clock Divisor
 	SYSCTL_RCC_R |= SYSCTL_RCC_PWMDIV_64;  // PWM Clock = 1.25 MHz (20/16)
@@ -48,7 +52,7 @@ void PWM1_init (uint8_t  pin_index)
 		{
 			case 1 : PWM5_3_G2();
 			
-		  case 2 : PWM6_3_G3();
+		        case 2 : PWM6_3_G3();
 			
 			case 3 : PWM7_3_G3();
 		}
@@ -62,7 +66,7 @@ void SetDutyCycle(uint8_t pin_index ,uint8_t duty_cycle )
 	
 		{
 			case 1 : PWM1_2_CMPA_R = (uint16_t)(2500 * (1 - (duty_cycle / 100.0)) - 1);		
-		  case 2 : PWM1_3_CMPA_R = (uint16_t)(2500 * (1 - (duty_cycle / 100.0)) - 1);
+		        case 2 : PWM1_3_CMPA_R = (uint16_t)(2500 * (1 - (duty_cycle / 100.0)) - 1);
 			case 3 : PWM1_3_CMPA_R = (uint16_t)(2500 * (1 - (duty_cycle / 100.0)) - 1);
 		}
 }
