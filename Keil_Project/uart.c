@@ -13,7 +13,10 @@ void uart_init(){
   UART0_LCRH_R = 0x60;   /* 8-bit, no parity, 1-stop bit, no FIFO */
   UART0_CTL_R = 0x301;   /* enable UART0, TXE, RXE */
   
-	/* UART0 TX0 and RX0 use PA0 and PA1. Set them up.init it in port.c*/
+	/*PA0 and PA1 init*/
+	GPIO_PORTA_DEN_R|=0X03;
+	GPIO_PORTA_AFSEL_R|=0X03;
+	GPIO_PORTA_PCTL_R=0X11;
 
 }
 
