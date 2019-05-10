@@ -1,7 +1,7 @@
 #include"tm4c123gh6pm_a.h"
 #include "uart.h"
 
-void uart_init(){
+void uart_init(void){
    
 	SYSCTL_RCGCUART_R  =1; //enale uart0
 	SYSCTL_RCGCGPIO_R= 1;  //enable port a

@@ -1,9 +1,13 @@
 Dependencies for Project 'Board1', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x5CD5D29A)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\main.o --omf_browse .\main.crf --depend .\main.d)
-I (uart.h)(0x5CD5D292)
-F (.\startup_TM4C123 .s)(0x5CC3427B)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123--list ".\startup_tm4c123 .lst" --xref -o ".\startup_tm4c123 .o" --depend ".\startup_tm4c123 .d")
+F (.\main.c)(0x5CD5D6CB)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --signed_chars-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+I (uart.h)(0x5CD5DAD3)
+F (.\startup_TM4C123 .s)(0x5CC3427B)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123--list ".\startup_tm4c123 .lst" --xref -o ".\startup_tm4c123 .o" --depend ".\startup_tm4c123 .d")
 F (.\tm4c123gh6pm_a.h)(0x5CBCBE9B)()
-F (.\uart.c)(0x5CD5D227)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\uart.o --omf_browse .\uart.crf --depend .\uart.d)
+F (.\uart.c)(0x5CD5DA11)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --signed_chars-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\uart.o --omf_browse .\uart.crf --depend .\uart.d)
 I (tm4c123gh6pm_a.h)(0x5CBCBE9B)
-I (uart.h)(0x5CD5D292)
-F (.\uart.h)(0x5CD5D292)()
+I (uart.h)(0x5CD5DAD3)
+F (.\uart.h)(0x5CD5DAD3)()
+F (.\motor.c)(0x5CD5E7CA)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --signed_chars-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-DTM4C123GH6PM-o .\motor.o --omf_browse .\motor.crf --depend .\motor.d)
+I (tm4c123gh6pm_a.h)(0x5CBCBE9B)
+I (motor.h)(0x5CD5E68E)
+F (.\motor.h)(0x5CD5E68E)()
