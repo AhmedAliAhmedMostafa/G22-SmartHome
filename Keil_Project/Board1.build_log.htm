@@ -9,24 +9,25 @@ Project File Date:  05/10/2019
 <h2>Output:</h2>
 Build target 'Target 1'
 compiling main.c...
-uart.h(3): warning:  #1-D: last line of file ends without a newline
-  void uart_init();
-uart.h(3): warning:  #1295-D: Deprecated declaration uart_init - give arg types
-  void uart_init();
-main.c(5): warning:  #1-D: last line of file ends without a newline
+motor.h(5): warning:  #1-D: last line of file ends without a newline
+  void Rotate(Rotation_Dirction dir,int degree);
+main.c(10): warning:  #1-D: last line of file ends without a newline
   }
-main.c: 3 warnings, 0 errors
-assembling startup_TM4C123 .s...
-compiling uart.c...
+main.c: 2 warnings, 0 errors
+compiling motor.c...
+motor.h(5): warning:  #1-D: last line of file ends without a newline
+  void Rotate(Rotation_Dirction dir,int degree);
 tm4c123gh6pm_a.h(9999): warning:  #2775-D: white space is required between the macro name "SYSCTL_DCGC2_C" and its replacement text
   #define SYSCTL_DCGC2_C:\Keil\TExaSware\C2_Toggle_PF1\lib      0x00000001  // Port A Clock Gating Control
-uart.h(3): warning:  #1-D: last line of file ends without a newline
-  void uart_init();
-uart.h(3): warning:  #1295-D: Deprecated declaration uart_init - give arg types
-  void uart_init();
-uart.c(32): warning:  #1-D: last line of file ends without a newline
-  }
-uart.c: 4 warnings, 0 errors
+motor.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=536 RO-data=636 RW-data=0 ZI-data=608  
-".\Board1.axf" - 0 Error(s), 7 Warning(s).
+Program Size: Code=1780 RO-data=640 RW-data=0 ZI-data=608  
+".\Board1.axf" - 0 Error(s), 4 Warning(s).
+ation to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 1 error messages.
+".\Board1.axf" - 1 Error(s), 4 Warning(s).
+Target not created
+rors
+".\Board1.axf" - 4 Error(s), 2 Warning(s).
+Target not created

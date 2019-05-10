@@ -1,5 +1,7 @@
-#include"tm4c123gh6pm_a.h"
-#include"motor.h"
+#include "motor.h"
+#include "tm4c123gh6pm_a.h"
+const char sequence[]={0x3,0X9,0xc,0x6};
+
 void delay_ms(int delay)
 {
 	int i,j;
@@ -20,7 +22,7 @@ void Rotate(Rotation_Dirction dir,int degree)
 		{
 			if(dir==positive)
 			{
-				GPIO_PORTB_DATA_R=(GPIO_PORTB_DATA_R&~0x0f)|sequence[4-i];
+				GPIO_PORTB_DATA_R=(GPIO_PORTB_DATA_R&~0x0f)|sequence[3-i];
 			}
 			else if(dir==negative)
 			{

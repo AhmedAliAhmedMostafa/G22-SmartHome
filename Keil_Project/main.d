@@ -1,2 +1,2 @@
 .\main.o: main.c
-.\main.o: uart.h
+.\main.o: motor.h
