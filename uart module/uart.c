@@ -29,3 +29,8 @@ char UART0Rx(void)
    c = UART0_DR_R;                  /* read the received data */
        return c;                        /* and return it */
 }
+void UART0_puts(char* s){
+  while (*s != 0) /* if not end of string */
+  UART0Tx(*s++); /* send the character through UART0 */
+
+}
