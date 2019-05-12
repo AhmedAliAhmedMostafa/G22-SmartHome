@@ -65,9 +65,9 @@ void SetDutyCycle(uint8_t pin_index ,uint8_t duty_cycle )
 	switch (pin_index)
 	
 		{
-			case 1 : PWM1_2_CMPA_R = (uint16_t)(2500 * (1 - (duty_cycle / 2500)) - 1);		
-		        case 2 : PWM1_3_CMPA_R = (uint16_t)(2500 * (1 - (duty_cycle / 2500)) - 1);
-			case 3 : PWM1_3_CMPA_R = (uint16_t)(2500 * (1 - (duty_cycle / 2500)) - 1);
+			case 1 : PWM1_2_CMPA_R = (uint16_t)(2500 * (1 - (duty_cycle / 100)) - 1);		
+		        case 2 : PWM1_3_CMPA_R = (uint16_t)(2500 * (1 - (duty_cycle / 100)) - 1);
+			case 3 : PWM1_3_CMPA_R = (uint16_t)(2500 * (1 - (duty_cycle / 100)) - 1);
 		}
 }
 	
