@@ -1,0 +1,17 @@
+.\temp_sensor.o: temp_sensor.c
+.\temp_sensor.o: temp_sensor.h
+.\temp_sensor.o: uart.h
+.\temp_sensor.o: TM4C123GH6PM_B.h
+.\temp_sensor.o: C:\Keil\ARM\CMSIS\Include\core_cm4.h
+.\temp_sensor.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\temp_sensor.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\temp_sensor.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\temp_sensor.o: C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h
+.\temp_sensor.o: C:\Keil\ARM\Inc\TI\TM4C123\system_TM4C123.h
+.\temp_sensor.o: adc.h
+.\temp_sensor.o: port.h
+.\temp_sensor.o: tm4c123gh6pm.h
+.\temp_sensor.o: stdint.h
+.\temp_sensor.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\temp_sensor.o: uart.h
+.\temp_sensor.o: adc.h
