@@ -10,7 +10,7 @@ void Rotate(Rotation_Dirction dir,uint32_t degree)
 		{
 			if(dir==positive)
 			{
-				GPIO_PORTX_DATA_R=(GPIO_PORTX_DATA_R&~Port_mask)|sequence[4-i];
+				GPIO_PORTX_DATA_R=(GPIO_PORTX_DATA_R&~Port_mask)|sequence[3-i];
 			}
 			else if(dir==negative)
 			{
