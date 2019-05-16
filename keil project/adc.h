@@ -1,4 +1,5 @@
-#include "TM4C123GH6PM.H"
-void ADC0_init();
-uint16_t get_temp();
-void UART0_puts(char* s);
+typedef enum {PB5,PB4,PE0,PE1,PE2,PE3,PE4,PE5,PD0,PD1,PD2,PD3}ANALOG_IN;
+void ADC_Init_TEMP(void);
+char ADC_get_temp(void);
+uint16_t ADC_get_read(void);
+void ADC_Init(ANALOG_IN AIN);

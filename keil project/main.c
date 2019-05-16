@@ -2,36 +2,49 @@
 #include "Tm4c123GH6pm.h"
 #include "motor.h"
 #include "uart.h"
-#include "adc.h"
 #include "PWM.h"
+#include "ADC.h"
 
 int main(void)
 {
-int8_t data_btn,upper,lower;
-int duty_cycle,data_adc,temp;
-	int i;
+uint16_t data_btn,data_adc;
+char duty_cycle,temp;
+
+	int i=0;
 
 uartInitM4_BTN(9600);
-uartInitM3_ADC(9600);
-motor_init();
-ADC0_init();
+ADC_Init_TEMP();
+PWM1_init (3);
+
+
+
+//uartInitM3_ADC(9600)
+	motor_init();
+
 //PWM1_init (3);
 //led_init_pwm (3);
 
 while(1)
 {
 	
-//	if((UART4->FR & 0x10) == 0)
-//	{
-//		data_btn=UART_RECIEVE_BTN();
-//		switch(data_btn)
-//		{	
-//			case'#':Rotate(negative,30);
-//				break;
-//			case'$':Rotate(positive,30);
-//			break;
-//		}
-//	}
+	if((UART4->FR & 0x10) == 0)
+	{
+		data_btn=UART_RECIEVE_BTN();
+		switch(data_btn)
+		{	
+			case'#':Rotate(negative,30);
+				break;
+			case'$':Rotate(positive,30);
+			default:SetDutyCycle(3 ,data_btn);
+				break;;
+			break;
+		}
+	}
+ temp=ADC_get_temp();
+ UART_SEND_BTN(temp);
+// delay_ms(5000);
+}
+}
 ////		 if((UART3->FR & 0x10) == 0)
 ////	{
 ////		data_adc=UART_RECIEVE_ADC();
@@ -41,18 +54,17 @@ while(1)
 ////		duty_cycle=(data_adc)/4096;
 ////		SetDutyCycle(3 ,duty_cycle);
 ////	}
-for(i=0;i<5;i++)
-{
- temp=(100*i)+get_temp();
- upper=temp>>4;
- lower=temp&0x00f;
- UART_SEND_ADC(upper);
- UART_SEND_ADC(lower);
- delay_ms(5000);
-	
-}
-}
-}
+//while(1)
+//{
+
+// temp=ADC_get_temp();
+// UART_SEND_BTN(temp);
+// delay_ms(5000);
+//}	
+
+
+//}
+//}
 
 	
 //	char data;

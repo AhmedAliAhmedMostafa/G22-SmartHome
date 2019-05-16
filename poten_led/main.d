@@ -13,5 +13,5 @@
 .\main.o: Delay.h
 .\main.o: stdint.h
 .\main.o: port.h
-.\main.o: adc.h
+.\main.o: ADC.h
 .\main.o: swicth.h

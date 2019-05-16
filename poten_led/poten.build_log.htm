@@ -4,7 +4,7 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 D:\eng\3rd year\Second Term\MicroProcessor Based Systems\Projects\Project_2_smartHome\poten_led\poten.uvproj
-Project File Date:  05/12/2019
+Project File Date:  05/16/2019
 
 <h2>Output:</h2>
 Build target 'Target 1'
@@ -17,32 +17,30 @@ port.h(39): warning:  #1-D: last line of file ends without a newline
   #endif
 LCD.h(32): warning:  #1-D: last line of file ends without a newline
   void delayMs(int n);
-adc.h(2): warning:  #1295-D: Deprecated declaration ADC0_init - give arg types
+ADC.h(2): warning:  #1295-D: Deprecated declaration ADC0_init - give arg types
   void ADC0_init();
-adc.h(3): warning:  #1295-D: Deprecated declaration ADC_read - give arg types
+ADC.h(3): warning:  #1295-D: Deprecated declaration ADC_read - give arg types
   uint8_t ADC_read();
-adc.h(4): warning:  #1-D: last line of file ends without a newline
+ADC.h(4): warning:  #1-D: last line of file ends without a newline
   void UART0_puts(char* s);
 swicth.h(6): warning:  #1-D: last line of file ends without a newline
   unsigned char SW2_Input(void);
-main.c(18): warning:  #177-D: variable "chara" was declared but never referenced
-  { int chara;
-main.c(19): warning:  #177-D: variable "temp" was declared but never referenced
-   uint16_t temp;
+main.c(13): warning:  #223-D: function "ADC_Init" declared implicitly
+        ADC_Init(PD1);
+main.c(76): warning:  #223-D: function "ADC_get_read" declared implicitly
+                data_adc=ADC_get_read();
 main.c: 10 warnings, 0 errors
 linking...
-Program Size: Code=5784 RO-data=636 RW-data=0 ZI-data=608  
+Program Size: Code=7088 RO-data=636 RW-data=0 ZI-data=608  
 FromELF: creating hex file...
 ".\poten.axf" - 0 Error(s), 10 Warning(s).
-Load "D:\\eng\\3rd year\\Second Term\\MicroProcessor Based Systems\\Projects\\Project_2_smartHome\\poten_led\\poten.axf" 
-Connecting: Mode=JTAG, Speed=1000000Hz
-Connection failed!, error code=&d
-Error: Flash Download failed  -  Target DLL has been cancelled
 Load "D:\\eng\\3rd year\\Second Term\\MicroProcessor Based Systems\\Projects\\Project_2_smartHome\\poten_led\\poten.axf" 
 Connecting: Mode=JTAG, Speed=1000000Hz
 Erase Done.
 Programming Done.
 Verify OK.
-</pre>
-</body>
-</html>
+Load "D:\\eng\\3rd year\\Second Term\\MicroProcessor Based Systems\\Projects\\Project_2_smartHome\\poten_led\\poten.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.

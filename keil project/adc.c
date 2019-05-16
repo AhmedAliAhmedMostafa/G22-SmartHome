@@ -1,28 +1,65 @@
-#include "adc.h"
+#include"TM4C123GH6PM.h"
 #include "tm4c123gh6pm_a.h"
-#include "TM4C123GH6PM.H"
-//uint8_t result;
-
-void ADC0_init()
+#include "ADC.h"
+void ADC_Init(ANALOG_IN AIN)	// SELECT ONE OF THESE INPUT PINS TO ADC	(MAY NOT BE USED IN THIS PROJECT BUT IN CASE NEEDED)
 {
-//	SYSCTL_RCGCGPIO_R |= 0X08;
-	SYSCTL_RCGCADC_R=1;  						  /* enable clock to ADC0 */
-  ADC0_ACTSS_R&=~ADC_ACTSS_ASEN3;   /* disable SS3 during configuration */
-	ADC0_EMUX_R &= ~0xF000; 					/* software trigger conversion */
-	ADC0_SSMUX3_R =ADC_SSMUX3_MUX0_S; /* get input from channel 0 */
-	ADC0_SSCTL3_R|=0X0E;   // 1st Sample is End of Sequence -use interrupt-use temp sensor
-	ADC0_ACTSS_R|=ADC_ACTSS_ASEN3;    /* enable ADC0 sequencer 3 */
-	/* initialize PE3 for AIN0 input */
-//  GPIO_PORTE_AFSEL_R |= 0X08; 					/* enable alternate function */
-//  GPIO_PORTE_DEN_R &= ~0x08; 					/* disable digital function */
-//  GPIO_PORTE_AMSEL_R |= 0x08; 					/* enable analog function */
- }
-uint16_t get_temp(){
-	uint16_t result;
-	ADC0_PSSI_R|=ADC_PSSI_SS3;        /* start a conversion sequence 3 */
-  while((ADC0_RIS_R & ADC_RIS_INR3)==0);/* wait for conversion complete */
-  result=ADC0_SSFIFO3_R;            /* read conversion result */
-  ADC0_ISC_R |=ADC_ISC_IN3; 	//clear completion flag 
-	result= 147-(result* 247 )/4096;
-	return result;
+	SYSCTL-> RCGCADC|=0X01;
+	// ------------------ SETTING INPUT SIGNAL TO ADC 	--------------------------
+	if     (AIN ==PB4){SYSCTL->RCGCGPIO|=0X02;GPIOB->AFSEL|=0X10;GPIOB->DEN&=~0X10;GPIOB->AMSEL|=0X10;}
+	else if(AIN ==PB5){SYSCTL->RCGCGPIO|=0X02;GPIOB->AFSEL|=0X20;GPIOB->DEN&=~0X20;GPIOB->AMSEL|=0X20;}
+	else if(AIN ==PE0){SYSCTL->RCGCGPIO|=0X10;GPIOE->AFSEL|=0X01;GPIOE->DEN&=~0X01;GPIOE->AMSEL|=0X01;}
+	else if(AIN ==PE1){SYSCTL->RCGCGPIO|=0X10;GPIOE->AFSEL|=0X02;GPIOE->DEN&=~0X02;GPIOE->AMSEL|=0X02;}
+	else if(AIN ==PE2){SYSCTL->RCGCGPIO|=0X10;GPIOE->AFSEL|=0X04;GPIOE->DEN&=~0X04;GPIOE->AMSEL|=0X04;}
+	else if(AIN ==PE3){SYSCTL->RCGCGPIO|=0X10;GPIOE->AFSEL|=0X08;GPIOE->DEN&=~0X08;GPIOE->AMSEL|=0X08;}
+	else if(AIN ==PE4){SYSCTL->RCGCGPIO|=0X10;GPIOE->AFSEL|=0X10;GPIOE->DEN&=~0X10;GPIOE->AMSEL|=0X10;}
+	else if(AIN ==PE5){SYSCTL->RCGCGPIO|=0X10;GPIOE->AFSEL|=0X20;GPIOE->DEN&=~0X20;GPIOE->AMSEL|=0X20;}
+	else if(AIN ==PD0){SYSCTL->RCGCGPIO|=0X08;GPIOD->AFSEL|=0X01;GPIOD->DEN&=~0X01;GPIOD->AMSEL|=0X01;}
+	else if(AIN ==PD1){SYSCTL->RCGCGPIO|=0X08;GPIOD->AFSEL|=0X02;GPIOD->DEN&=~0X02;GPIOD->AMSEL|=0X02;}
+	else if(AIN ==PD2){SYSCTL->RCGCGPIO|=0X08;GPIOD->AFSEL|=0X04;GPIOD->DEN&=~0X04;GPIOD->AMSEL|=0X04;}
+	else if(AIN ==PD3){SYSCTL->RCGCGPIO|=0X08;GPIOD->AFSEL|=0X08;GPIOD->DEN&=~0X08;GPIOD->AMSEL|=0X08;}
+	// ------------------END SETTING INPUT SIGNAL TO ADC --------------------------
+	ADC0->ACTSS		&=~0X08;
+	ADC0->EMUX		&=~0XF000;			/* software trigger conversion */
+	ADC0->SSMUX3		 =0X06;				// FOR TEMPRATURE SENSOR SEE DATASHEET P.853 <======
+	ADC0->SSCTL3		|=0X06;				// take one sample at a time, set flag at 1st sample
+	ADC0->ACTSS 		|= 0X08;
 }
+void ADC_Init_TEMP(void)   // NO NEED FOR AN INPUT SIGNAL AS READING IS FROM THE EMBEDDED TEMP SENSOR	(THIS CAN BE USED IN PROJECT)
+{
+	SYSCTL-> RCGCADC	|=0X01;
+	while((SYSCTL_PRADC_R&0x01)==0);
+	ADC0->ACTSS		&=~0X08;
+	ADC0->EMUX		&=~0XF000;			/* software trigger conversion */
+	ADC0->SSMUX3		 =0X00;				// FOR TEMPRATURE SENSOR SEE DATASHEET P.853 <======
+	ADC0->SSCTL3		|=0X0E;				// take one sample at a time, set flag at 1st sample,also takes temprature reading
+	ADC0->ACTSS 		|= 0X08;
+}
+void ADC1_Init_TEMP(void)   // NO NEED FOR AN INPUT SIGNAL AS READING IS FROM THE EMBEDDED TEMP SENSOR	(THIS CAN BE USED IN PROJECT)
+{
+	SYSCTL-> RCGCADC	|=0X02;
+	while((SYSCTL_PRADC_R&0x02)==0);
+	ADC1->ACTSS		&=~0X08;
+	ADC1->EMUX		&=~0XF000;			/* software trigger conversion */
+	ADC1->SSMUX3		 =0X00;				// FOR TEMPRATURE SENSOR SEE DATASHEET P.853 <======
+	ADC1->SSCTL3		|=0X0E;				// take one sample at a time, set flag at 1st sample,also takes temprature reading
+	ADC1->ACTSS 		|= 0X08;
+}
+char ADC_get_temp(void)	// FOR SAMPLE SEQUENCER 3
+{
+	char temperature=0;
+	ADC0->PSSI |= 8;
+	while((ADC0->RIS & 0x08) == 0x00) ;									// <===== THIS CAN ALSO BE INTERRUPT DRIVEN FOR FUTURE DEVELOPMENT
+	temperature = 147 - (247 * ADC0->SSFIFO3) / 4096;		// WHERE 75 FROM DATASHEET AND Vdd = 3.3V >====> 75*3.3 = 247
+	ADC0->ISC = 8;
+	return temperature;
+}
+uint16_t ADC_get_read(void)								// MADE FOR GETTING ADC READING
+{
+	uint16_t RESULT = 0;
+	ADC0->PSSI |= 8;
+	while((ADC0->RIS & 0x08) == 0x00) ;		// <===== THIS CAN ALSO BE INTERRUPT DRIVEN FOR FUTURE DEVELOPMENT
+	RESULT =  ADC0->SSFIFO3;		
+	ADC0->ISC = 8;
+	return RESULT;
+}
+

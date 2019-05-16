@@ -9,5 +9,5 @@
 .\main.o: C:\Keil\ARM\Inc\TI\TM4C123\system_TM4C123.h
 .\main.o: motor.h
 .\main.o: uart.h
-.\main.o: adc.h
 .\main.o: PWM.h
+.\main.o: ADC.h

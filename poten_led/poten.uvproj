@@ -421,11 +421,6 @@
               <FilePath>..\counter\port.h</FilePath>
             </File>
             <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\adc.c</FilePath>
-            </File>
-            <File>
               <FileName>LCD.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\LCD.h</FilePath>
@@ -484,6 +479,16 @@
               <FileName>TM4C123GH6PM_B.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\TM4C123GH6PM_B.h</FilePath>
+            </File>
+            <File>
+              <FileName>ADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\keil project\ADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>ADC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\keil project\ADC.h</FilePath>
             </File>
           </Files>
         </Group>

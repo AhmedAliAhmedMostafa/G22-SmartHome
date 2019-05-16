@@ -25,7 +25,7 @@ void uartInitM4_BTN(uint32_t baudrate)	// PC4 = U4RX, PC5 = U4TX
 	UART4->IBRD=intbaud;
 	UART4->FBRD=fbaud;
 	//--------------END BAUDRATE CALC AND SET----------------------------
-	UART3	->LCRH	|=0X60;
+	UART4	->LCRH	|=0X60;
 	UART4	->	CTL		|=0X301;
 }
 void uartInitM3_ADC(uint32_t baudrate)// PC6 = U3RX, PC7 = U3TX
