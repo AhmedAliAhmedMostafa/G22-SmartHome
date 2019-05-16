@@ -3,7 +3,6 @@
 // Enables the uDMA controller for use.
 void uDMAEnable(void)
 {
-  
     // Set the master enable bit in the config register.
     HWREG(UDMA_CFG) = UDMA_CFG_MASTEN;
 }
